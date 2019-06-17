@@ -1,0 +1,74 @@
+.--st_mon {
+	left: 14.6%;
+	top: 19.4%;
+}
+
+.--nd_mon {
+	left: 78.6%;
+	top: 87.4%;
+}
+
+.--rd_mon {
+	width: 53.43px;
+	height: 53.43px;
+	left: 63.8%;
+	top: 21.8%;
+}
+
+.--th_mon {
+	width: 60.59px;
+	height: 60.59px;
+	left: 12%;
+	top: 75.6%;
+	border-radius: 14px;
+	transform: rotate(-45deg);
+}
+
+.messages_mon {
+	height: 39.4%;
+}
+
+.--fh_mon {
+	top: 16.2%;
+}
+
+.mes_mon_0 {
+	top: 27%;
+}
+
+.mes_mon_1 {
+	top: 36.8%;
+}
+
+.images_mon {
+	height: 37.8%;
+}
+
+.PersikHungry {
+	height: 88.6%;
+}
+
+.controls_mon {
+	height: 22.8%;
+}
+
+.images_mon_paid {
+	height: 50.6%;
+}
+
+.PersikGlad_container {
+	top: 41%;
+	height: 100%;
+}
+
+.PersikGlad {
+	height: 54%;
+}
+
+.messages_mon_paid {
+	height: 11.2%;
+}
+
+.controls_mon_paid {
+	height: 38.2%;
+}

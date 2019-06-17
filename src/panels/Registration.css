@@ -1,0 +1,47 @@
+.--st_reg {
+	left: 14.4%;
+	top: 53%;
+}
+
+.--nd_reg {
+	left: 5.3%;
+	top: 21.3%;
+}
+
+.--rd_reg {
+	left: 89.5%;
+	top: 14.2%;
+}
+
+.--th_reg {
+	left: 73%;
+	top: 73.5%;
+	transform: rotate(-30deg);
+}
+
+.images_reg {
+	height: 32.3%;
+}
+
+.SpotHI {
+	height: 68%;
+	top: 25.5%;
+}
+
+.messages_reg {
+	height: 51.6%;
+}
+
+.messages_reg_blue {
+	top: 12.2%;
+	color: #C9D4FA;
+}
+
+.messages_reg_weight {
+	top: 21.6%;
+	font-weight: 500;
+}
+
+.controls_reg {
+	height: 16.1%;
+}

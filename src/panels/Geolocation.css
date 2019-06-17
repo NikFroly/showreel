@@ -1,0 +1,60 @@
+.--st_geo {
+	left: 77.7%;
+	top: 16.7%;
+	transform: rotate(-45deg);
+}
+
+.--nd_geo {
+	left: 5.5%;
+	top: 97%;
+}
+
+.--rd_geo {
+	left: 3.8%;
+	top: 38%;
+	transform: rotate(-15deg);
+}
+
+.--th_geo {
+	left: 79.4%;
+	top: 60.5%;
+	transform: rotate(30deg);
+}
+
+.images_geo {
+	height: 39.4%;
+}
+
+.PersikHide {
+	height: 63%;
+	top: 31%;
+}
+
+.messages_geo {
+	height: 31%;
+}
+
+.mes_geo_0 {
+	top: 17%;
+}
+
+.controls_geo {
+	height: 29.6%;
+}
+
+.images_geo_map {
+	height: 89%;
+}
+
+.StaticMap {
+	top: 1.6%;
+	height: 96.4%;
+	background-size: auto 100%;
+	background-position: center;
+	background-repeat: no-repeat;
+	border-radius: 22px;
+}
+
+.controls_geo_map {
+	height: 11%;
+}
