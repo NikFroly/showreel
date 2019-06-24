@@ -81,7 +81,7 @@ class App extends React.Component {
 					}
 					break;
 				default:
-					console.log(e.detail.type);
+					console.log(e.detail);
 			}
 		});
 		connect.send('VKWebAppSetViewSettings', { status_bar_style: 'light', action_bar_color: '#1F3375' });
