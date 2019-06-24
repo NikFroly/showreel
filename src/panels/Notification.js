@@ -4,7 +4,7 @@ import { Button } from '@vkontakte/vkui';
 import pushExample from '../img/Push_example.svg';
 import './Notification.css';
 
-const Notification = ({ id, sendPushMessage, allowNotification, go }) => (
+const Notification = ({ id, getNotifications, allowNotification, go }) => (
 	<div className="Page" id={id}>
 		<section className="background_element">
 			<div className="Rectangle --first"></div>
@@ -34,7 +34,7 @@ const Notification = ({ id, sendPushMessage, allowNotification, go }) => (
 					</article>
 				</section>
 				<section className="controls_nt">
-					<Button size="xl" level="secondary" onClick={sendPushMessage}>
+					<Button size="xl" level="secondary" onClick={getNotifications}>
 						{`${ allowNotification ? 'Выключить push' : 'Включить push' }`}
 					</Button>
 					<Button className="controls_skip --cs_nt" level="tertiary" onClick={go} data-to="smartphone">
@@ -59,7 +59,7 @@ const Notification = ({ id, sendPushMessage, allowNotification, go }) => (
 
 Notification.propTypes = {
 	id: PropTypes.string.isRequired,
-	sendPushMessage: PropTypes.func.isRequired,
+	getNotifications: PropTypes.func.isRequired,
 	allowNotification: PropTypes.bool.isRequired,
 	go: PropTypes.func.isRequired
 };

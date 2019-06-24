@@ -56,12 +56,14 @@ class App extends React.Component {
 					break;
 				case 'VKWebAppAllowNotificationsResult':
 					this.setState({ allowNotification: e.detail.data.result });
+					this.getToken();
 					break;
 				case 'VKWebAppDenyNotificationsResult':
 					this.setState({ allowNotification: e.detail.data.disabled });
 					break;
 				case 'VKWebAppAccessTokenReceived':
 					this.setState({ token: e.detail.data.access_token });
+					this.sendPushMessage();
 					break;
 				case 'VKWebAppCallAPIMethodResult':
 					if (e.detail.data.request_id === '49test') {
@@ -92,39 +94,30 @@ class App extends React.Component {
 		this.setState({ showResult: true });
 	}
 
-	getAllowNotifications = () => {
-		connect.send('VKWebAppAllowNotifications', {});
+	getNotifications = () => {
+		if (this.state.allowNotification) {
+			connect.send('VKWebAppDenyNotifications', {});
+		} 
+		else {
+			connect.send('VKWebAppAllowNotifications', {});
+		}
 	}
 
-	getDenyNotifications = () => {
-		connect.send('VKWebAppDenyNotifications', {});
-	}
-
-	getAuthToken = () => {
+	getToken = () => {
 		connect.send('VKWebAppGetAuthToken', { app_id: 6996835, scope: 'notify' });
 	}
 
 	sendPushMessage = () => {
-		if (this.state.allowNotification) {
-			this.getDenyNotifications();
-		}
-		else {
-			this.getAllowNotifications();
-
-			if (this.state.allowNotification) {
-				this.getAuthToken();
-				connect.send('VKWebAppCallAPIMethod', {
-					method: 'notifications.sendMessage',
-					request_id: '49test',
-					params: {
-						user_ids: this.state.fetchedUser.id,
-						message: `${this.state.fetchedUser ? 'Привет, ' + this.state.fetchedUser.first_name  + '!' : 'Здравствуйте!'}`,
-						v: 5.95,
-						access_token: this.state.token
-					}
-				});
+		connect.send('VKWebAppCallAPIMethod', {
+			method: 'notifications.sendMessage',
+			request_id: '49test',
+			params: {
+				user_ids: this.state.fetchedUser.id,
+				message: `${this.state.fetchedUser ? 'Привет, ' + this.state.fetchedUser.first_name  + '!' : 'Здравствуйте!'}`,
+				v: 5.95,
+				access_token: this.state.token
 			}
-		}
+		});
 	}
 
 	scanQR = () => {
@@ -170,7 +163,7 @@ class App extends React.Component {
 				<Start id="start" go={this.go} />
 				<Registration id="registration" fetchedUser={this.state.fetchedUser} go={this.go} />
 				<Geolocation id="geolocation" showResult={this.state.showResult} getGeodata={this.getGeodata} geodata={this.state.geodata} go={this.go} />
-				<Notification id="notification" sendPushMessage={this.sendPushMessage} allowNotification={this.state.allowNotification} go={this.go} />
+				<Notification id="notification" getNotifications={this.getNotifications} allowNotification={this.state.allowNotification} go={this.go} />
 				<Smartphone id="smartphone" iOS={this.state.iOS} scanQR={this.scanQR} getTaptic={this.getTaptic} controlFlashlight={this.controlFlashlight} turnFlashlight={this.state.turnFlashlight} go={this.go} />
 				<Monetization id="monetization" showResult={this.state.showResult} feedPersik={this.feedPersik} go={this.go} />
 				<Business id="business" go={this.go} />
