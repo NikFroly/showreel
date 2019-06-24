@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import { Button } from '@vkontakte/vkui';
 import './Contacts.css';
 
-const Contacts = ({ id, getContact }) => (
+const Contacts = ({ id, go }) => (
 	<div className="Page" id={id}>
 		<section className="background_element">
-			<div className="Rectangle --first --st_con"></div>
-			<div className="Rectangle --second --nd_con"></div>
-			<div className="Rectangle --third --rd_con"></div>
-			<div className="Rectangle --fourth --th_con"></div>
+			<div className="Rectangle --first"></div>
+			<div className="Rectangle --second"></div>
+			<div className="Rectangle --third"></div>
+			<div className="Rectangle --fourth"></div>
 		</section>
 		<section className="content">
 			<header></header>
@@ -43,30 +43,32 @@ const Contacts = ({ id, getContact }) => (
 						Luna Apps
 					</article>
 					<article className="mes_con_0">
-						Если у вас появилась идея для сервиса, мы можем реализовать её вместе.
+						Если у вас появилась идея для сервиса,<br />
+						мы можем реализовать её вместе.
 					</article>
 					<article className="mes_con_1">
-						Мы делаем сервисы с момента их появления. 
+						Мы делаем сервисы с момента их появления.<br /> 
 						Каждый десятый сервис в каталоге разработан нами.
 					</article>
 					<article className="mes_con_2">
-						А еще мы разрабатываем<br />сервисы на заказ
+						А еще мы разрабатываем сервисы на заказ.
 					</article>
 				</section>
-				<section className="controls_con">
-					<Button size="xl" level="secondary" onClick={getContact}>
+				<form className="controls_con" action="https://vk.cc/981DxN">
+					<Button size="xl" level="secondary">
 						Написать нам
 					</Button>
-				</section>
+				</form>
 			</main>
 			<footer>
-				<div className="page_label"></div>
-				<div className="page_label"></div>
-				<div className="page_label"></div>
-				<div className="page_label"></div>
-				<div className="page_label"></div>
-				<div className="page_label"></div>
-				<div className="page_label"></div>
+				<div className="page_label" onClick={go} data-to="welcome"></div>
+				<div className="page_label" onClick={go} data-to="start"></div>
+				<div className="page_label" onClick={go} data-to="registration"></div>
+				<div className="page_label" onClick={go} data-to="geolocation"></div>
+				<div className="page_label" onClick={go} data-to="notification"></div>
+				<div className="page_label" onClick={go} data-to="smartphone"></div>
+				<div className="page_label" onClick={go} data-to="monetization"></div>
+				<div className="page_label" onClick={go} data-to="business"></div>
 				<div className="page_label --current"></div>
 			</footer>
 		</section>
@@ -75,13 +77,7 @@ const Contacts = ({ id, getContact }) => (
 
 Contacts.propTypes = {
 	id: PropTypes.string.isRequired,
-	getContact: PropTypes.func.isRequired
+	go: PropTypes.func.isRequired
 };
 
 export default Contacts;
-
-/*<form className="controls_con" action="https://ирсиб.рф https://vk.cc/981DxN">
-					<Button size="xl" level="secondary">
-						Написать нам
-					</Button>
-				</form>*/

@@ -36,10 +36,10 @@ function ChangeContent(props) {
 const Smartphone = ({ id, iOS, scanQR, getTaptic, controlFlashlight, turnFlashlight, go }) => (
 	<div className="Page" id={id}>
 		<section className="background_element">
-			<div className="Rectangle --first --st_sp"></div>
-			<div className="Rectangle --second --nd_sp"></div>
-			<div className="Rectangle --third --rd_sp"></div>
-			<div className="Rectangle --fourth --th_sp"></div>
+			<div className="Rectangle --first"></div>
+			<div className="Rectangle --second"></div>
+			<div className="Rectangle --third"></div>
+			<div className="Rectangle --fourth"></div>
 		</section>
 		<section className="content">
 			<header></header>
@@ -52,7 +52,7 @@ const Smartphone = ({ id, iOS, scanQR, getTaptic, controlFlashlight, turnFlashli
 						Неплохо, не правда ли?
 					</article>
 					<article className="mes_sp_1">
-						У сервисов есть доступ к основным органам смартфона
+						У сервисов есть доступ к основным органам смартфона.
 					</article>
 					<article className="mes_sp_2">
 						В сервисе можно:
@@ -74,14 +74,15 @@ const Smartphone = ({ id, iOS, scanQR, getTaptic, controlFlashlight, turnFlashli
 				</section>
 			</main>
 			<footer>
-				<div className="page_label"></div>
-				<div className="page_label"></div>
-				<div className="page_label"></div>
-				<div className="page_label"></div>
-				<div className="page_label"></div>
+				<div className="page_label" onClick={go} data-to="welcome"></div>
+				<div className="page_label" onClick={go} data-to="start"></div>
+				<div className="page_label" onClick={go} data-to="registration"></div>
+				<div className="page_label" onClick={go} data-to="geolocation"></div>
+				<div className="page_label" onClick={go} data-to="notification"></div>
 				<div className="page_label --current"></div>
-				<div className="page_label"></div>
-				<div className="page_label"></div>
+				<div className="page_label" onClick={go} data-to="monetization"></div>
+				<div className="page_label" onClick={go} data-to="business"></div>
+				<div className="page_label" onClick={go} data-to="contacts"></div>
 			</footer>
 		</section>
 	</div>

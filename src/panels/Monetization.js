@@ -20,7 +20,7 @@ function ChangeContent(props) {
 					</article>
 				</section>
 				<section className="controls_mon_paid">
-					<Button size="xl" level="secondary" onClick={props.go} data-to="contacts">
+					<Button size="xl" level="secondary" onClick={props.go} data-to="business">
 						Продолжить
 					</Button>
 				</section>
@@ -49,7 +49,7 @@ function ChangeContent(props) {
 					<Button size="xl" level="secondary" onClick={props.feedPersik} data-to="monetization">
 						Купить Персику корм за 1 рубль
 					</Button>
-					<Button className="controls_skip" level="tertiary" onClick={props.go} data-to="contacts">
+					<Button className="controls_skip" level="tertiary" onClick={props.go} data-to="business">
 						Пропустить
 					</Button>
 				</section>
@@ -61,23 +61,24 @@ function ChangeContent(props) {
 const Monetization = ({ id, showResult, feedPersik, go }) => (
 	<div className="Page" id={id}>
 		<section className="background_element">
-			<div className="Rectangle --second --st_mon"></div>
-			<div className="Rectangle --second --nd_mon"></div>
-			<div className="Rectangle --third --rd_mon"></div>
-			<div className="Rectangle --fourth --th_mon"></div>
+			<div className="Rectangle --first"></div>
+			<div className="Rectangle --second"></div>
+			<div className="Rectangle --third"></div>
+			<div className="Rectangle --fourth"></div>
 		</section>
 		<section className="content">
 			<header></header>
 			<ChangeContent showResult={showResult} feedPersik={feedPersik} go={go} />
 			<footer>
-				<div className="page_label"></div>
-				<div className="page_label"></div>
-				<div className="page_label"></div>
-				<div className="page_label"></div>
-				<div className="page_label"></div>
-				<div className="page_label"></div>
+				<div className="page_label" onClick={go} data-to="welcome"></div>
+				<div className="page_label" onClick={go} data-to="start"></div>
+				<div className="page_label" onClick={go} data-to="registration"></div>
+				<div className="page_label" onClick={go} data-to="geolocation"></div>
+				<div className="page_label" onClick={go} data-to="notification"></div>
+				<div className="page_label" onClick={go} data-to="smartphone"></div>
 				<div className="page_label --current"></div>
-				<div className="page_label"></div>
+				<div className="page_label" onClick={go} data-to="business"></div>
+				<div className="page_label" onClick={go} data-to="contacts"></div>
 			</footer>
 		</section>
 	</div>

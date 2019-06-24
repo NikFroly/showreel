@@ -11,6 +11,7 @@ import Geolocation from './panels/Geolocation';
 import Notification from './panels/Notification';
 import Smartphone from './panels/Smartphone';
 import Monetization from './panels/Monetization';
+import Business from './panels/Business';
 import Contacts from './panels/Contacts';
 
 class App extends React.Component {
@@ -81,6 +82,7 @@ class App extends React.Component {
 					console.log(e.detail.type);
 			}
 		});
+		connect.send('VKWebAppSetViewSettings', { status_bar_style: 'light', action_bar_color: '#1F3375' });
 		connect.send('VKWebAppGetUserInfo', {});
 		connect.send('VKWebAppGetClientVersion', {});
 	}
@@ -90,15 +92,27 @@ class App extends React.Component {
 		this.setState({ showResult: true });
 	}
 
+	getAllowNotifications = () => {
+		connect.send('VKWebAppAllowNotifications', {});
+	}
+
+	getDenyNotifications = () => {
+		connect.send('VKWebAppDenyNotifications', {});
+	}
+
+	getAuthToken = () => {
+		connect.send('VKWebAppGetAuthToken', { app_id: 6996835, scope: 'notify' });
+	}
+
 	sendPushMessage = () => {
 		if (this.state.allowNotification) {
-			connect.send('VKWebAppDenyNotifications', {});
+			this.getDenyNotifications();
 		}
 		else {
-			connect.send('VKWebAppAllowNotifications', {});
+			this.getAllowNotifications();
 
 			if (this.state.allowNotification) {
-				connect.send('VKWebAppGetAuthToken', { app_id: 6996835, scope: 'notify' });
+				this.getAuthToken();
 				connect.send('VKWebAppCallAPIMethod', {
 					method: 'notifications.sendMessage',
 					request_id: '49test',
@@ -144,15 +158,6 @@ class App extends React.Component {
 		});
 	}
 
-	getContact() {
-		connect.send("VKWebAppJoinGroup", {"group_id": 178245062});
-
-		/*connect.send('VKWebAppOpenApp', {
-			app_id: 5708398,
-			location: '_-178245062'
-		});*/
-	}
-
 	go = (e) => {
 		this.setState({ showResult: false });
 		this.setState({ activePanel: e.currentTarget.dataset.to });
@@ -168,7 +173,8 @@ class App extends React.Component {
 				<Notification id="notification" sendPushMessage={this.sendPushMessage} allowNotification={this.state.allowNotification} go={this.go} />
 				<Smartphone id="smartphone" iOS={this.state.iOS} scanQR={this.scanQR} getTaptic={this.getTaptic} controlFlashlight={this.controlFlashlight} turnFlashlight={this.state.turnFlashlight} go={this.go} />
 				<Monetization id="monetization" showResult={this.state.showResult} feedPersik={this.feedPersik} go={this.go} />
-				<Contacts id="contacts" getContact={this.getContact} />
+				<Business id="business" go={this.go} />
+				<Contacts id="contacts" go={this.go} />
 			</View>
 		);
 	}

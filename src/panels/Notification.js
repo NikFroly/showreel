@@ -1,16 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button } from '@vkontakte/vkui';
-import pushExample from '../img/Push_example.png';
+import pushExample from '../img/Push_example.svg';
 import './Notification.css';
 
 const Notification = ({ id, sendPushMessage, allowNotification, go }) => (
 	<div className="Page" id={id}>
 		<section className="background_element">
-			<div className="Rectangle --first --st_nt"></div>
-			<div className="Rectangle --second --nd_nt"></div>
-			<div className="Rectangle --third --rd_nt"></div>
-			<div className="Rectangle --fourth --th_nt"></div>
+			<div className="Rectangle --first"></div>
+			<div className="Rectangle --second"></div>
+			<div className="Rectangle --third"></div>
+			<div className="Rectangle --fourth"></div>
 		</section>
 		<section className="content">
 			<header></header>
@@ -20,7 +20,9 @@ const Notification = ({ id, sendPushMessage, allowNotification, go }) => (
 						Push-уведомления
 					</article>
 					<article className="mes_nt_0">
-						Если сервис интересный, то можно подписывать пользователя на push-уведомления и сообщать о новых событиях.
+						Если сервис интересный,<br />
+						то можно подписывать пользователя на push-уведомления<br />
+						и сообщать о новых событиях.
 					</article>
 				</section>
 				<section className="images_nt">
@@ -28,7 +30,7 @@ const Notification = ({ id, sendPushMessage, allowNotification, go }) => (
 				</section>
 				<section className="messages_nt_2">
 					<article>
-						Оно появится даже на заблокированном экране устройства
+						Оно появится даже на заблокированном экране устройства.
 					</article>
 				</section>
 				<section className="controls_nt">
@@ -41,14 +43,15 @@ const Notification = ({ id, sendPushMessage, allowNotification, go }) => (
 				</section>
 			</main>
 			<footer>
-				<div className="page_label"></div>
-				<div className="page_label"></div>
-				<div className="page_label"></div>
-				<div className="page_label"></div>
+				<div className="page_label" onClick={go} data-to="welcome"></div>
+				<div className="page_label" onClick={go} data-to="start"></div>
+				<div className="page_label" onClick={go} data-to="registration"></div>
+				<div className="page_label" onClick={go} data-to="geolocation"></div>
 				<div className="page_label --current"></div>
-				<div className="page_label"></div>
-				<div className="page_label"></div>
-				<div className="page_label"></div>
+				<div className="page_label" onClick={go} data-to="smartphone"></div>
+				<div className="page_label" onClick={go} data-to="monetization"></div>
+				<div className="page_label" onClick={go} data-to="business"></div>
+				<div className="page_label" onClick={go} data-to="contacts"></div>
 			</footer>
 		</section>
 	</div>

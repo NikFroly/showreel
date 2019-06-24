@@ -6,10 +6,10 @@ import './Welcome.css';
 const Welcome = ({ id, fetchedUser, go }) => (
 	<div className="Page" id={id}>
 		<section className="background_element">
-			<div className="Rectangle --first --st_wel"></div>
-			<div className="Rectangle --second --nd_wel"></div>
-			<div className="Rectangle --third --rd_wel"></div>
-			<div className="Rectangle --fourth --th_wel"></div>
+			<div className="Rectangle --first"></div>
+			<div className="Rectangle --second"></div>
+			<div className="Rectangle --third"></div>
+			<div className="Rectangle --fourth"></div>
 		</section>
 		<section className="content">
 			<header></header>
@@ -50,10 +50,13 @@ const Welcome = ({ id, fetchedUser, go }) => (
 						Привет{`${ fetchedUser ? ', ' + fetchedUser.first_name : '' }`}!
 					</article>
 					<article className="font_headline">
-						Добро пожаловать<br />в VK Apps
+						Добро пожаловать<br />
+						в VK Apps
 					</article>
 					<article className="mes_wel_0">
-						Мы расскажем, что такое сервисы ВКонтакте<br />и что они умеют
+						Мы расскажем,<br />
+						что такое сервисы ВКонтакте<br />
+						и что они умеют.
 					</article>
 				</section>
 				<section className="controls_wel">
@@ -64,13 +67,14 @@ const Welcome = ({ id, fetchedUser, go }) => (
 			</main>
 			<footer>
 				<div className="page_label --current"></div>
-				<div className="page_label"></div>
-				<div className="page_label"></div>
-				<div className="page_label"></div>
-				<div className="page_label"></div>
-				<div className="page_label"></div>
-				<div className="page_label"></div>
-				<div className="page_label"></div>
+				<div className="page_label" onClick={go} data-to="start"></div>
+				<div className="page_label" onClick={go} data-to="registration"></div>
+				<div className="page_label" onClick={go} data-to="geolocation"></div>
+				<div className="page_label" onClick={go} data-to="notification"></div>
+				<div className="page_label" onClick={go} data-to="smartphone"></div>
+				<div className="page_label" onClick={go} data-to="monetization"></div>
+				<div className="page_label" onClick={go} data-to="business"></div>
+				<div className="page_label" onClick={go} data-to="contacts"></div>
 			</footer>
 		</section>
 	</div>

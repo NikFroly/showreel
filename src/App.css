@@ -1,12 +1,101 @@
-html {
-	overflow: hidden;
+@keyframes fly_st {
+	from {
+		top: -12%;
+		left: -8%;
+		transform: rotate(0deg);
+	}
+
+	25% {
+		left: 20%;
+	}
+
+	50% {
+		left: -6%;
+	}
+
+	75% {
+		left: 12%;
+	}
+
+	to {
+		top: 100%;
+		left: -10%;
+		transform: rotate(360deg);
+	}
 }
 
-body {
-	background: #1F3375;
+@keyframes fly_nd {
+	from {
+		top: 100%;
+	}
+
+	50% {
+		top: 100%;
+		left: 55%;
+		transform: rotate(0deg);
+	}
+
+	75% {
+		left: 34%;
+	}
+
+	to {
+		top: -6%;
+		left: 17%;
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes fly_rd {
+	from {
+		top: -9%;
+	}
+
+	25% {
+		top: -9%;
+		left: 64%;
+		transform: rotate(0deg);
+	}
+
+	50% {
+		left: 46%;
+	}
+
+	75% {
+		left: 62%;
+	}
+
+	to {
+		top: 100%;
+		left: 110%;
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes fly_th {
+	from {
+		top: 100%;
+	}
+
+	50% {
+		top: 100%;
+		left: 42%;
+		transform: rotate(0deg);
+	}
+
+	75% {
+		left: 82%;
+	}
+
+	to {
+		top: -10%;
+		left: 70%;
+		transform: rotate(360deg);
+	}
 }
 
 .Page {
+	position: fixed;
 	height: 100%;
 	width: 100%;
 	background: #1F3375;
@@ -26,33 +115,37 @@ body {
 }
 
 .--first {
-	width: 45.92px;
-	height: 45.92px;
-	transform: rotate(30deg);
+	animation: fly_st 16s infinite linear;
+	width: 62.95px;
+	height: 62.95px;
 }
 
 .--second {
+	animation: fly_nd 18s infinite linear;
 	width: 33.45px;
 	height: 33.45px;
-	transform: rotate(15deg);
 }
 
 .--third {
-	width: 62.95px;
-	height: 62.95px;
+	animation: fly_rd 18s infinite linear;
+	width: 40.71px;
+	height: 40.71px;
 	border-radius: 14px;
-	transform: rotate(37.43deg);
 }
 
 .--fourth {
-	width: 40.71px;
-	height: 40.71px;
-	transform: rotate(18.06deg);
+	animation: fly_th 20s infinite linear;
+	width: 45.92px;
+	height: 45.92px;
 }
 
 .content {
 	width: 100%;
 	height: 100%;
+}
+
+.content * {
+	position: relative;
 }
 
 header {
@@ -63,10 +156,6 @@ main {
 	height: 84.17%;
 	width: 90%;
 	margin: auto;
-}
-
-.content * {
-	position: relative;
 }
 
 svg {
@@ -114,7 +203,7 @@ footer {
 	vertical-align: top;
 	background: #304283;
 	border-radius: 15px;
-	width: 11.31%;
+	width: 9.9%;
 	height: 14.44%;
 }
 
@@ -126,19 +215,19 @@ footer {
 	background: #B0ACE3;
 }
 
-@media only screen and (max-width : 355px) {
+@media only screen and (max-width : 374px) {
 	.Page {
-		font-size: 12.75px;
-		line-height: 17.85px;
+		font-size: 12px;
+		line-height: 16.8px;
 	}
 
 	.font_headline {
-		font-size: 21.25px;
-		line-height: 24.65px;
+		font-size: 20px;
+		line-height: 23.2px;
 	}
 
 	.Button--sz-xl .Button__content {
-		font-size: 14.45px;
+		font-size: 13.6px;
 	}
 
 	.--orange {

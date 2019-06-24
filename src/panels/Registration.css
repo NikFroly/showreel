@@ -1,24 +1,3 @@
-.--st_reg {
-	left: 14.4%;
-	top: 53%;
-}
-
-.--nd_reg {
-	left: 5.3%;
-	top: 21.3%;
-}
-
-.--rd_reg {
-	left: 89.5%;
-	top: 14.2%;
-}
-
-.--th_reg {
-	left: 73%;
-	top: 73.5%;
-	transform: rotate(-30deg);
-}
-
 .images_reg {
 	height: 32.3%;
 }
