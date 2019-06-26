@@ -1,8 +1,13 @@
 import React from 'react';
+import axios from 'axios';
+import base64 from 'react-native-base64';
 import connect from '@vkontakte/vkui-connect';
 import { View } from '@vkontakte/vkui';
 import '@vkontakte/vkui/dist/vkui.css';
 import './App.css';
+import './backend/payScript.php';
+import './backend/callback.php';
+import './backend/public_key';
 
 import Welcome from './panels/Welcome';
 import Start from './panels/Start';
@@ -56,14 +61,10 @@ class App extends React.Component {
 					break;
 				case 'VKWebAppAllowNotificationsResult':
 					this.setState({ allowNotification: e.detail.data.result });
-					this.getToken();
+					this.sendPushMessage();
 					break;
 				case 'VKWebAppDenyNotificationsResult':
 					this.setState({ allowNotification: e.detail.data.disabled });
-					break;
-				case 'VKWebAppAccessTokenReceived':
-					this.setState({ token: e.detail.data.access_token });
-					this.sendPushMessage();
 					break;
 				case 'VKWebAppCallAPIMethodResult':
 					if (e.detail.data.request_id === '49test') {
@@ -103,10 +104,6 @@ class App extends React.Component {
 		}
 	}
 
-	getToken = () => {
-		connect.send('VKWebAppGetAuthToken', { app_id: 6996835, scope: 'notify' });
-	}
-
 	sendPushMessage = () => {
 		connect.send('VKWebAppCallAPIMethod', {
 			method: 'notifications.sendMessage',
@@ -115,7 +112,7 @@ class App extends React.Component {
 				user_ids: this.state.fetchedUser.id,
 				message: `${this.state.fetchedUser ? 'Привет, ' + this.state.fetchedUser.first_name  + '!' : 'Здравствуйте!'}`,
 				v: 5.95,
-				access_token: this.state.token
+				access_token: 'dc885af2dc885af2dc885af258dce29991ddc88dc885af280614792cae46a64cc772be7'
 			}
 		});
 	}
@@ -135,19 +132,65 @@ class App extends React.Component {
 		}
 		else {
 			connect.send('VKWebAppFlashSetLevel', { level: 1 });
-			this.setState({ turnFlashlight: true });	
+			this.setState({ turnFlashlight: true });
 		}
 	}
 
-	feedPersik() {
-		connect.send('VKWebAppOpenPayForm', { 
-			app_id: 6996835, 
-			action: 'pay-to-group', 
-			params: { 
-    			amount: 1, 
-    			description: 'тестовый платеж', 
-    			group_id: 178245062 
-			} 
+	feedPersik = () => {
+		console.log(this.props.url);
+		var self = this;
+		console.log(self.props.url);
+		axios.get(self.props.url + '/backend/payScript.php', {
+			params: {
+				api: 'getOrderId',
+				cource_id: self.props.id,
+				user_id: self.props.user_id,
+				amount: self.state.price,
+				mail: self.state.email
+			}
+		}).then(function (response){
+			var order_id = response.data.order_id;
+			var amount = response.data.amount;
+			var ts = + new Date();
+			var merchant_data = base64.encode(JSON.stringify({"amount":amount,"currency":"RUB","order_id":order_id,"ts":ts}));
+			axios.get(self.props.url + '/backend/payScript.php', {
+				params: {
+					api: 'getVKpaySign',
+					data: merchant_data
+				}
+			}).then(function (response){
+				merchant_data = response.data.merchant_data; 
+				var merchant_sign = response.data.merchant_sign;
+				var description = ' feed Persik';
+				var app_data = 'amount=' + amount + 'data={"currency":"RUB","merchant_data":"' + merchant_data + '","merchant_sign":"' + merchant_sign + '","order_id":"' + order_id + '","ts":' + ts + '}description=' + description + 'merchant_id=6996835version=2';
+				axios.get(self.props.url + '/backend/payScript.php', {
+					params: {
+						api: 'getVKpayAppSign',
+						data: app_data,
+						user_id: self.props.user_id
+					}
+				}).then(function (response) {
+					connect.send('VKWebAppOpenPayForm', {
+						app_id: 6996835,
+						action: 'pay-to-service',
+						params: {
+							amount: amount,
+							description: description,
+							action: "pay-to-service",
+							merchant_id: 3922194,
+							version: 2,
+							sign: response.data.app_sign,
+							data: {
+								currency: "RUB",
+								merchant_data: merchant_data,
+								merchant_sign: merchant_sign,
+								order_id: order_id,
+								ts: ts
+							}
+						}
+					});
+				});
+			});
 		});
 	}
 
