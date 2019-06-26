@@ -4,7 +4,7 @@ self.__precacheManifest = [
     "url": "/showreel/static/media/Persik_hide.10d9b8a9.png"
   },
   {
-    "revision": "92e08738b84e17957a5d",
+    "revision": "514a5feacee9cebc7017",
     "url": "/showreel/static/css/main.a2e510df.chunk.css"
   },
   {
@@ -32,8 +32,8 @@ self.__precacheManifest = [
     "url": "/showreel/static/media/Spot_HI.5a03d1d6.png"
   },
   {
-    "revision": "92e08738b84e17957a5d",
-    "url": "/showreel/static/js/main.92e08738.chunk.js"
+    "revision": "514a5feacee9cebc7017",
+    "url": "/showreel/static/js/main.514a5fea.chunk.js"
   },
   {
     "revision": "6d7fa222c7e937f1b59aa4fde3d0cde2",
@@ -60,7 +60,7 @@ self.__precacheManifest = [
     "url": "/showreel/static/css/2.d4be2c15.chunk.css"
   },
   {
-    "revision": "7ace53a4c3cf12a1ba3455c749b441cf",
+    "revision": "855d22c5da18dba9e481eba53a445223",
     "url": "/showreel/index.html"
   }
 ];
