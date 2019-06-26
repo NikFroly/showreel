@@ -138,14 +138,13 @@ class App extends React.Component {
 	}
 
 	feedPersik = () => {
-		var self = this;
 		axios.get(PayScript, {
 			params: {
 				api: 'getOrderId',
-				cource_id: self.props.id,
-				user_id: self.props.user_id,
-				amount: self.state.price,
-				mail: self.state.email
+				cource_id: this.props.id,
+				user_id: this.props.user_id,
+				amount: this.state.price,
+				mail: this.state.email
 			}
 		}).then(function (response){
 			var order_id = response.data.order_id;
@@ -166,7 +165,7 @@ class App extends React.Component {
 					params: {
 						api: 'getVKpayAppSign',
 						data: app_data,
-						user_id: self.props.user_id
+						user_id: this.props.user_id
 					}
 				}).then(function (response) {
 					connect.send('VKWebAppOpenPayForm', {
