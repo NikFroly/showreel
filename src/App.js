@@ -5,9 +5,10 @@ import connect from '@vkontakte/vkui-connect';
 import { View } from '@vkontakte/vkui';
 import '@vkontakte/vkui/dist/vkui.css';
 import './App.css';
-import './backend/payScript.php';
 import './backend/callback.php';
 import './backend/public_key';
+
+import PayScript from './backend/payScript.php';
 
 import Welcome from './panels/Welcome';
 import Start from './panels/Start';
@@ -138,7 +139,7 @@ class App extends React.Component {
 
 	feedPersik = () => {
 		var self = this;
-		axios.get('static/js/backend/payScript.php', {
+		axios.get(PayScript, {
 			params: {
 				api: 'getOrderId',
 				cource_id: self.props.id,
@@ -151,7 +152,7 @@ class App extends React.Component {
 			var amount = response.data.amount;
 			var ts = + new Date();
 			var merchant_data = base64.encode(JSON.stringify({"amount":amount,"currency":"RUB","order_id":order_id,"ts":ts}));
-			axios.get('static/js/backend/payScript.php', {
+			axios.get(PayScript, {
 				params: {
 					api: 'getVKpaySign',
 					data: merchant_data
@@ -161,7 +162,7 @@ class App extends React.Component {
 				var merchant_sign = response.data.merchant_sign;
 				var description = ' feed Persik';
 				var app_data = 'amount=' + amount + 'data={"currency":"RUB","merchant_data":"' + merchant_data + '","merchant_sign":"' + merchant_sign + '","order_id":"' + order_id + '","ts":' + ts + '}description=' + description + 'merchant_id=6996835version=2';
-				axios.get('static/js/backend/payScript.php', {
+				axios.get(PayScript, {
 					params: {
 						api: 'getVKpayAppSign',
 						data: app_data,
