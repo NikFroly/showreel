@@ -59,6 +59,7 @@ class App extends React.Component {
 							lng: e.detail.data.long
 						}
 					});
+					this.setState({ showResult: true });
 					break;
 				case 'VKWebAppAllowNotificationsResult':
 					this.setState({ allowNotification: e.detail.data.result });
@@ -97,7 +98,6 @@ class App extends React.Component {
 
 	getGeodata = () => {
 		connect.send('VKWebAppGetGeodata', {});
-		this.setState({ showResult: true });
 	}
 
 	getNotifications = () => {
@@ -141,7 +141,7 @@ class App extends React.Component {
 		}
 	}
 
-	getMail = () => {
+	getEmail = () => {
 		connect.send('VKWebAppGetEmail', {});
 	}
 
@@ -214,7 +214,7 @@ class App extends React.Component {
 				<Geolocation id="geolocation" showResult={this.state.showResult} getGeodata={this.getGeodata} geodata={this.state.geodata} go={this.go} />
 				<Notification id="notification" getNotifications={this.getNotifications} allowNotification={this.state.allowNotification} go={this.go} />
 				<Smartphone id="smartphone" iOS={this.state.iOS} scanQR={this.scanQR} getTaptic={this.getTaptic} controlFlashlight={this.controlFlashlight} turnFlashlight={this.state.turnFlashlight} go={this.go} />
-				<Monetization id="monetization" showResult={this.state.showResult} getMail={this.getMail} go={this.go} />
+				<Monetization id="monetization" showResult={this.state.showResult} getEmail={this.getEmail} go={this.go} />
 				<Business id="business" go={this.go} />
 				<Contacts id="contacts" go={this.go} />
 			</View>
