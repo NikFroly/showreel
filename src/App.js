@@ -141,8 +141,8 @@ class App extends React.Component {
 		axios.get(PayScript, {
 			params: {
 				api: 'getOrderId',
-				cource_id: this.props.id,
-				user_id: this.props.user_id,
+				cource_id: this.state.id,
+				user_id: this.state.user_id,
 				amount: this.state.price,
 				mail: this.state.email
 			}
@@ -165,7 +165,7 @@ class App extends React.Component {
 					params: {
 						api: 'getVKpayAppSign',
 						data: app_data,
-						user_id: this.props.user_id
+						user_id: this.state.user_id
 					}
 				}).then(function (response) {
 					connect.send('VKWebAppOpenPayForm', {
