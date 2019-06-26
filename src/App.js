@@ -137,10 +137,8 @@ class App extends React.Component {
 	}
 
 	feedPersik = () => {
-		console.log(this.props.url);
 		var self = this;
-		console.log(self.props.url);
-		axios.get(self.props.url + '/backend/payScript.php', {
+		axios.get('static/js/backend/payScript.php', {
 			params: {
 				api: 'getOrderId',
 				cource_id: self.props.id,
@@ -153,7 +151,7 @@ class App extends React.Component {
 			var amount = response.data.amount;
 			var ts = + new Date();
 			var merchant_data = base64.encode(JSON.stringify({"amount":amount,"currency":"RUB","order_id":order_id,"ts":ts}));
-			axios.get(self.props.url + '/backend/payScript.php', {
+			axios.get('static/js/backend/payScript.php', {
 				params: {
 					api: 'getVKpaySign',
 					data: merchant_data
@@ -163,7 +161,7 @@ class App extends React.Component {
 				var merchant_sign = response.data.merchant_sign;
 				var description = ' feed Persik';
 				var app_data = 'amount=' + amount + 'data={"currency":"RUB","merchant_data":"' + merchant_data + '","merchant_sign":"' + merchant_sign + '","order_id":"' + order_id + '","ts":' + ts + '}description=' + description + 'merchant_id=6996835version=2';
-				axios.get(self.props.url + '/backend/payScript.php', {
+				axios.get('static/js/backend/payScript.php', {
 					params: {
 						api: 'getVKpayAppSign',
 						data: app_data,
