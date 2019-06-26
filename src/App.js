@@ -67,6 +67,10 @@ class App extends React.Component {
 				case 'VKWebAppDenyNotificationsResult':
 					this.setState({ allowNotification: e.detail.data.disabled });
 					break;
+				case 'VKWebAppGetEmailResult':
+					this.setState({ email: e.detail.data.email });
+					this.feedPersik();
+					break;
 				case 'VKWebAppCallAPIMethodResult':
 					if (e.detail.data.request_id === '49test') {
 						if (e.detail.data.status) {
@@ -137,15 +141,18 @@ class App extends React.Component {
 		}
 	}
 
+	getMail = () => {
+		connect.send('VKWebAppGetEmail', {});
+	}
+
 	feedPersik = () => {
-		var self = this;
 		axios.get(PayScript, {
 			params: {
 				api: 'getOrderId',
-				cource_id: self.props.id,
-				user_id: self.props.user_id,
-				amount: self.state.price,
-				mail: self.state.email
+				cource_id: 6996835,
+				user_id: this.props.fetchedUser.id,
+				amount: 1,
+				mail: this.state.email
 			}
 		}).then(function (response){
 			var order_id = response.data.order_id;
@@ -166,7 +173,7 @@ class App extends React.Component {
 					params: {
 						api: 'getVKpayAppSign',
 						data: app_data,
-						user_id: self.props.user_id
+						user_id: this.props.fetchedUser.id
 					}
 				}).then(function (response) {
 					connect.send('VKWebAppOpenPayForm', {
@@ -207,7 +214,7 @@ class App extends React.Component {
 				<Geolocation id="geolocation" showResult={this.state.showResult} getGeodata={this.getGeodata} geodata={this.state.geodata} go={this.go} />
 				<Notification id="notification" getNotifications={this.getNotifications} allowNotification={this.state.allowNotification} go={this.go} />
 				<Smartphone id="smartphone" iOS={this.state.iOS} scanQR={this.scanQR} getTaptic={this.getTaptic} controlFlashlight={this.controlFlashlight} turnFlashlight={this.state.turnFlashlight} go={this.go} />
-				<Monetization id="monetization" showResult={this.state.showResult} feedPersik={this.feedPersik} go={this.go} />
+				<Monetization id="monetization" showResult={this.state.showResult} getMail={this.getMail} go={this.go} />
 				<Business id="business" go={this.go} />
 				<Contacts id="contacts" go={this.go} />
 			</View>
