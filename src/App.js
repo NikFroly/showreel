@@ -173,7 +173,7 @@ class App extends React.Component {
 					params: {
 						api: 'getVKpayAppSign',
 						data: app_data,
-						user_id: this.state.fetchedUser.id
+						user_id: this.props.fetchedUser.id
 					}
 				}).then(function (response) {
 					connect.send('VKWebAppOpenPayForm', {
