@@ -51,7 +51,7 @@ const Welcome = ({ id, fetchedUser, go }) => (
 					</article>
 					<article className="font_headline">
 						Добро пожаловать<br />
-						в VK Apps
+						в VK mini Apps
 					</article>
 					<article className="mes_wel_0">
 						Мы расскажем,<br />

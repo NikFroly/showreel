@@ -4,36 +4,52 @@ import { Button } from '@vkontakte/vkui';
 import './Smartphone.css';
 
 function ChangeContent(props) {
-	if (props.iOS) {
-		return (
-			<section className="controls_sp_1">
-				<Button className="controls_cam --orange" size="xl" level="secondary" onClick={props.scanQR}>
-					Открыть камеру
-				</Button>
-				<Button className="controls_vib --orange" size="xl" level="secondary" onClick={props.getTaptic}>
-					Повибрировать
-				</Button>
-				<Button className="controls_light --orange" size="xl" level="secondary" onClick={props.controlFlashlight}>
-					{`${ props.turnFlashlight ? 'Выключить фонарик' : 'Включить фонарик' }`}
-				</Button>
-			</section>
-		);
-	}
-	else {
-		return (
-			<section className="controls_sp_1">
-				<Button className="controls_cam_notiOS --orange" size="xl" level="secondary" onClick={props.scanQR}>
-					Открыть камеру
-				</Button>
-				<Button className="controls_light_notiOS --orange" size="xl" level="secondary" onClick={props.controlFlashlight}>
-					{`${ props.turnFlashlight ? 'Выключить фонарик' : 'Включить фонарик' }`}
-				</Button>
-			</section>
-		);
+	switch (props.platform) {
+		case 'ios':
+			return (
+				<section className="controls_sp_1">
+					<Button className="controls_cam --orange" size="xl" level="secondary" onClick={props.scanQR}>
+						Открыть камеру
+					</Button>
+					<Button className="controls_vib --orange" size="xl" level="secondary" onClick={props.getTaptic}>
+						Повибрировать
+					</Button>
+					<Button className="controls_light --orange" size="xl" level="secondary" onClick={props.controlFlashlight}>
+						{`${ props.turnFlashlight ? 'Выключить фонарик' : 'Включить фонарик' }`}
+					</Button>
+				</section>
+			);
+			break;
+		case 'android':
+			return (
+				<section className="controls_sp_1">
+					<Button className="controls_cam_notiOS --orange" size="xl" level="secondary" onClick={props.scanQR}>
+						Открыть камеру
+					</Button>
+					<Button className="controls_light_notiOS --orange" size="xl" level="secondary" onClick={props.controlFlashlight}>
+						{`${ props.turnFlashlight ? 'Выключить фонарик' : 'Включить фонарик' }`}
+					</Button>
+				</section>
+			);
+			break;
+		default: // fix web version
+			return (
+				<section className="controls_sp_1">
+					<Button className="controls_cam --orange" size="xl" level="secondary" onClick={props.scanQR}>
+						Открыть камеру
+					</Button>
+					<Button className="controls_vib --orange" size="xl" level="secondary" onClick={props.getTaptic}>
+						Повибрировать
+					</Button>
+					<Button className="controls_light --orange" size="xl" level="secondary" onClick={props.controlFlashlight}>
+						{`${ props.turnFlashlight ? 'Выключить фонарик' : 'Включить фонарик' }`}
+					</Button>
+				</section>
+			);
 	}
 }
 
-const Smartphone = ({ id, iOS, scanQR, getTaptic, controlFlashlight, turnFlashlight, go }) => (
+const Smartphone = ({ id, platform, scanQR, getTaptic, controlFlashlight, turnFlashlight, go }) => (
 	<div className="Page" id={id}>
 		<section className="background_element">
 			<div className="Rectangle --first"></div>
@@ -58,7 +74,7 @@ const Smartphone = ({ id, iOS, scanQR, getTaptic, controlFlashlight, turnFlashli
 						В сервисе можно:
 					</article>
 				</section>
-				<ChangeContent iOS={iOS} scanQR={scanQR} getTaptic={getTaptic} controlFlashlight={controlFlashlight} turnFlashlight={turnFlashlight} />
+				<ChangeContent platform={platform} scanQR={scanQR} getTaptic={getTaptic} controlFlashlight={controlFlashlight} turnFlashlight={turnFlashlight} />
 				<section className="messages_sp_2">
 					<article>
 						и многое другое!
@@ -90,7 +106,7 @@ const Smartphone = ({ id, iOS, scanQR, getTaptic, controlFlashlight, turnFlashli
 
 Smartphone.propTypes = {
 	id: PropTypes.string.isRequired,
-	iOS: PropTypes.bool.isRequired,
+	platform: PropTypes.string.isRequired,
 	scanQR: PropTypes.func.isRequired,
 	getTaptic: PropTypes.func.isRequired,
 	controlFlashlight: PropTypes.func.isRequired,

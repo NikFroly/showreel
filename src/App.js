@@ -5,8 +5,8 @@ import connect from '@vkontakte/vkui-connect';
 import { View } from '@vkontakte/vkui';
 import '@vkontakte/vkui/dist/vkui.css';
 import './App.css';
-import './backend/callback.php';
-import './backend/public_key';
+import './backend/callback.php'; // VKpay
+import './backend/public_key'; // VKpay
 
 import PayScript from './backend/payScript.php';
 
@@ -27,7 +27,6 @@ class App extends React.Component {
 		this.state = {
 			activePanel: 'welcome',
 			fetchedUser: null,
-			iOS: false,
 			showResult: false,
 			geodata: {
 				lat: 55.0419,
@@ -41,16 +40,17 @@ class App extends React.Component {
 	componentDidMount() {
 		connect.subscribe((e) => {
 			switch (e.detail.type) {
+				case 'VKWebAppGetClientVersionResult':
+					this.setState({ platform: e.detail.data.platform });
+					if (this.state.platform === 'android') {
+						connect.send('VKWebAppSetViewSettings', {
+							status_bar_style: 'light',
+							action_bar_color: '#1F3375'
+						});
+					}
+					break;
 				case 'VKWebAppGetUserInfoResult':
 					this.setState({ fetchedUser: e.detail.data });
-					break;
-				case 'VKWebAppGetClientVersionResult':
-					if (e.detail.data.platform === "ios") {
-						this.setState({ iOS: true });
-					}
-					else {
-						this.setState({ iOS: false });
-					}
 					break;
 				case 'VKWebAppGeodataResult':
 					this.setState({
@@ -68,10 +68,6 @@ class App extends React.Component {
 				case 'VKWebAppDenyNotificationsResult':
 					this.setState({ allowNotification: e.detail.data.disabled });
 					break;
-				case 'VKWebAppGetEmailResult':
-					this.setState({ email: e.detail.data.email });
-					this.feedPersik();
-					break;
 				case 'VKWebAppCallAPIMethodResult':
 					if (e.detail.data.request_id === '49test') {
 						if (e.detail.data.status) {
@@ -82,6 +78,10 @@ class App extends React.Component {
 						}
 					}
 					break;
+				case 'VKWebAppGetEmailResult':
+					this.setState({ email: e.detail.data.email });
+					this.feedPersik();
+					break;
 				case 'VKWebAppOpenPayFormResult':
 					if (e.detail.data.response.status) {
 						this.setState({ showResult: true });
@@ -91,21 +91,20 @@ class App extends React.Component {
 					console.log(e.detail);
 			}
 		});
-		connect.send('VKWebAppSetViewSettings', { status_bar_style: 'light', action_bar_color: '#1F3375' });
-		connect.send('VKWebAppGetUserInfo', {});
-		connect.send('VKWebAppGetClientVersion', {});
+		connect.send('VKWebAppGetClientVersion');
+		connect.send('VKWebAppGetUserInfo');
 	}
 
 	getGeodata = () => {
-		connect.send('VKWebAppGetGeodata', {});
+		connect.send('VKWebAppGetGeodata');
 	}
 
 	getNotifications = () => {
 		if (this.state.allowNotification) {
-			connect.send('VKWebAppDenyNotifications', {});
+			connect.send('VKWebAppDenyNotifications');
 		} 
 		else {
-			connect.send('VKWebAppAllowNotifications', {});
+			connect.send('VKWebAppAllowNotifications');
 		}
 	}
 
@@ -127,7 +126,7 @@ class App extends React.Component {
 	}
 
 	getTaptic = () => {
-		connect.send('VKWebAppTapticImpactOccurred', { style: 'heavy' });
+		connect.send('VKWebAppTapticNotificationOccurred', { type: 'success' });
 	}
 
 	controlFlashlight = () => {
@@ -142,7 +141,7 @@ class App extends React.Component {
 	}
 
 	getEmail = () => {
-		connect.send('VKWebAppGetEmail', {});
+		connect.send('VKWebAppGetEmail');
 	}
 
 	feedPersik = () => {
@@ -214,7 +213,7 @@ class App extends React.Component {
 				<Registration id="registration" fetchedUser={this.state.fetchedUser} go={this.go} />
 				<Geolocation id="geolocation" showResult={this.state.showResult} getGeodata={this.getGeodata} geodata={this.state.geodata} go={this.go} />
 				<Notification id="notification" getNotifications={this.getNotifications} allowNotification={this.state.allowNotification} go={this.go} />
-				<Smartphone id="smartphone" iOS={this.state.iOS} scanQR={this.scanQR} getTaptic={this.getTaptic} controlFlashlight={this.controlFlashlight} turnFlashlight={this.state.turnFlashlight} go={this.go} />
+				<Smartphone id="smartphone" platform={this.state.platform} scanQR={this.scanQR} getTaptic={this.getTaptic} controlFlashlight={this.controlFlashlight} turnFlashlight={this.state.turnFlashlight} go={this.go} />
 				<Monetization id="monetization" showResult={this.state.showResult} getEmail={this.getEmail} go={this.go} />
 				<Business id="business" go={this.go} />
 				<Contacts id="contacts" go={this.go} />

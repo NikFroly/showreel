@@ -54,7 +54,7 @@ const Contacts = ({ id, go }) => (
 						А еще мы разрабатываем сервисы на заказ.
 					</article>
 				</section>
-				<form className="controls_con" action="https://vk.cc/981DxN">
+				<form className="controls_con" action="https://vk.com/im?sel=-178245062">
 					<Button size="xl" level="secondary">
 						Написать нам
 					</Button>
