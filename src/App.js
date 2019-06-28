@@ -28,6 +28,10 @@ class App extends React.Component {
 			activePanel: 'welcome',
 			fetchedUser: null,
 			showResult: false,
+			geodata: {
+				lat: 55.0419,
+				lng: 82.9301
+			},
 			allowNotification: false,
 			turnFlashlight: false
 		};
@@ -55,7 +59,6 @@ class App extends React.Component {
 							lng: e.detail.data.long
 						}
 					});
-					this.setState({ showResult: true });
 					break;
 				case 'VKWebAppAllowNotificationsResult':
 					this.setState({ allowNotification: e.detail.data.result });
@@ -93,6 +96,7 @@ class App extends React.Component {
 
 	getGeodata = () => {
 		connect.send('VKWebAppGetGeodata');
+		this.setState({ showResult: true });
 	}
 
 	getNotifications = () => {
@@ -207,7 +211,7 @@ class App extends React.Component {
 				<Welcome id="welcome" fetchedUser={this.state.fetchedUser} go={this.go} />
 				<Start id="start" go={this.go} />
 				<Registration id="registration" fetchedUser={this.state.fetchedUser} go={this.go} />
-				<Geolocation id="geolocation" showResult={this.state.showResult} getGeodata={this.getGeodata} go={this.go} />
+				<Geolocation id="geolocation" showResult={this.state.showResult} getGeodata={this.getGeodata} geodata={this.state.geodata} go={this.go} />
 				<Notification id="notification" getNotifications={this.getNotifications} allowNotification={this.state.allowNotification} go={this.go} />
 				<Smartphone id="smartphone" platform={this.state.platform} scanQR={this.scanQR} getTaptic={this.getTaptic} controlFlashlight={this.controlFlashlight} turnFlashlight={this.state.turnFlashlight} go={this.go} />
 				<Monetization id="monetization" showResult={this.state.showResult} getEmail={this.getEmail} go={this.go} />

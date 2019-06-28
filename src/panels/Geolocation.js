@@ -49,7 +49,7 @@ function ChangeContent(props) {
 	}
 }
 
-const Geolocation = ({ id, showResult, getGeodata, go }) => (
+const Geolocation = ({ id, showResult, getGeodata, geodata, go }) => (
 	<div className="Page" id={id}>
 		<section className="background_element">
 			<div className="Rectangle --first"></div>
@@ -59,7 +59,7 @@ const Geolocation = ({ id, showResult, getGeodata, go }) => (
 		</section>
 		<section className="content">
 			<header></header>
-			<ChangeContent showResult={showResult} getGeodata={getGeodata} go={go} />
+			<ChangeContent showResult={showResult} getGeodata={getGeodata} geodata={geodata} go={go} />
 			<footer>
 				<div className="page_label" onClick={go} data-to="welcome"></div>
 				<div className="page_label" onClick={go} data-to="start"></div>
