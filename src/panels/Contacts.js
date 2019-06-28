@@ -54,7 +54,7 @@ const Contacts = ({ id, go }) => (
 						А еще мы разрабатываем сервисы на заказ.
 					</article>
 				</section>
-				<form className="controls_con" action="https://vk.me/indiedf">
+				<form className="controls_con" action="https://docs.google.com/forms/d/1P-B1l-Yky-gsb6pgg0WRlpceqr_NtVCT_jrOUXbolWs/edit">
 					<Button size="xl" level="secondary">
 						Заполнить бриф
 					</Button>
