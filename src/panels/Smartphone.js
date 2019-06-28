@@ -71,8 +71,8 @@ function ChangeContent(props) {
 					<article className="mes_sp_web_2">
 						В сервисе можно:
 					</article>
-					<div className="mes_sp_list">
-						<ul>
+					<div className="list">
+						<ul className="mes_sp_list">
 							Открыть камеру<br />
 							Задействовать Taptic Engine<br />
 							Управлять вспышкой
