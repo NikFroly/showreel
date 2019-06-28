@@ -170,11 +170,20 @@ svg {
 	top: 3%;
 }
 
-.Button {
-	width: 88%;
+.list, .Button {
 	max-width: 450px;
 	margin: auto;
 	padding: 0;
+}
+
+ul {
+	text-align: left;
+	margin: 0;
+	padding: 0 8%;
+}
+
+.Button {
+	width: 88%;
 }
 
 .Button--lvl-secondary {
@@ -215,7 +224,7 @@ footer {
 	background: #B0ACE3;
 }
 
-@media only screen and (max-width: 374px) and (max-height: 660px) {
+@media only screen and (max-height: 660px), (max-width: 374px) {
 	.Page {
 		font-size: 12px;
 		line-height: 16.8px;
@@ -233,4 +242,24 @@ footer {
 	.--orange {
 		line-height: 16px;
 	}
+}
+
+@media only screen and (min-height: 900px) {
+	.Page {
+		font-size: 21px;
+		line-height: 29.4px;
+	}
+
+	.font_headline {
+		font-size: 35px;
+		line-height: 40.6px;
+	}
+
+	.Button--sz-xl .Button__content {
+		font-size: 23.8px;
+	}
+
+	.--orange {
+		line-height: 28px;
+	}	
 }

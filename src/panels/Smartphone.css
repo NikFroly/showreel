@@ -1,41 +1,41 @@
 .messages_sp_1 {
-	height: 41%;
+	height: 71.5%;
 }
 
 .--fh_sp {
-	top: 15.5%;
+	top: 9%;
 }
 
 .mes_sp_0 {
-	top: 25%;
+	top: 14.5%;
 }
 
 .mes_sp_1 {
-	top: 34%;
+	top: 19.4%;
 }
 
 .mes_sp_2 {
-	top: 42.8%;
+	top: 24.6%;
 }
 
-.controls_sp_1 {
-	height: 30.5%;
+.controls_cam {
+	top: 29.2%;
 }
 
-.controls_cam_notiOS {
-	top: 15%;
+.controls_cam_android {
+	top: 33.5%;
 }
 
 .controls_vib {
-	top: 6.4%;
+	top: 32%;
 }
 
 .controls_light {
-	top: 12%;
+	top: 34.4%;
 }
 
-.controls_light_notiOS {
-	top: 25%;
+.controls_light_android {
+	top: 40.4%;
 }
 
 .messages_sp_2 {
@@ -48,4 +48,24 @@
 
 .controls_sp_2 {
 	height: 16.7%;
+}
+
+.SpotMobile {
+	height: 30%;
+}
+
+.mes_sp_web_0 {
+	top: 8.4%;
+}
+
+.mes_sp_web_1 {
+	top: 13.4%;
+}
+
+.mes_sp_web_2 {
+	top: 18.5%;
+}
+
+.mes_sp_list {
+	top: 22%;
 }

@@ -1,13 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button } from '@vkontakte/vkui';
+import spotMobile from '../img/Spot_mobile.png';
 import './Smartphone.css';
 
 function ChangeContent(props) {
 	switch (props.platform) {
 		case 'ios':
 			return (
-				<section className="controls_sp_1">
+				<section className="messages_sp_1">
+					<article className="font_headline --fh_sp">
+						Органы смартфона
+					</article>
+					<article className="mes_sp_0">
+						Неплохо, не правда ли?
+					</article>
+					<article className="mes_sp_1">
+						У сервисов есть доступ к основным органам смартфона.
+					</article>
+					<article className="mes_sp_2">
+						В сервисе можно:
+					</article>
 					<Button className="controls_cam --orange" size="xl" level="secondary" onClick={props.scanQR}>
 						Открыть камеру
 					</Button>
@@ -19,31 +32,52 @@ function ChangeContent(props) {
 					</Button>
 				</section>
 			);
-			break;
 		case 'android':
 			return (
-				<section className="controls_sp_1">
-					<Button className="controls_cam_notiOS --orange" size="xl" level="secondary" onClick={props.scanQR}>
+				<section className="messages_sp_1">
+					<article className="font_headline --fh_sp">
+						Органы смартфона
+					</article>
+					<article className="mes_sp_0">
+						Неплохо, не правда ли?
+					</article>
+					<article className="mes_sp_1">
+						У сервисов есть доступ к основным органам смартфона.
+					</article>
+					<article className="mes_sp_2">
+						В сервисе можно:
+					</article>
+					<Button className="controls_cam_android --orange" size="xl" level="secondary" onClick={props.scanQR}>
 						Открыть камеру
 					</Button>
-					<Button className="controls_light_notiOS --orange" size="xl" level="secondary" onClick={props.controlFlashlight}>
+					<Button className="controls_light_android --orange" size="xl" level="secondary" onClick={props.controlFlashlight}>
 						{`${ props.turnFlashlight ? 'Выключить фонарик' : 'Включить фонарик' }`}
 					</Button>
 				</section>
 			);
-			break;
-		default: // fix web version
+		default:
 			return (
-				<section className="controls_sp_1">
-					<Button className="controls_cam --orange" size="xl" level="secondary" onClick={props.scanQR}>
-						Открыть камеру
-					</Button>
-					<Button className="controls_vib --orange" size="xl" level="secondary" onClick={props.getTaptic}>
-						Повибрировать
-					</Button>
-					<Button className="controls_light --orange" size="xl" level="secondary" onClick={props.controlFlashlight}>
-						{`${ props.turnFlashlight ? 'Выключить фонарик' : 'Включить фонарик' }`}
-					</Button>
+				<section className="messages_sp_1">
+					<img className="SpotMobile" src={spotMobile} alt="Mobile" />
+					<article className="font_headline">
+						Органы смартфона
+					</article>
+					<article className="mes_sp_web_0">
+						Неплохо, не правда ли?
+					</article>
+					<article className="mes_sp_web_1">
+						У сервисов есть доступ к основным органам смартфона.
+					</article>
+					<article className="mes_sp_web_2">
+						В сервисе можно:
+					</article>
+					<div className="mes_sp_list">
+						<ul>
+							Открыть камеру<br />
+							Задействовать Taptic Engine<br />
+							Управлять вспышкой
+						</ul>
+					</div>
 				</section>
 			);
 	}
@@ -60,20 +94,6 @@ const Smartphone = ({ id, platform, scanQR, getTaptic, controlFlashlight, turnFl
 		<section className="content">
 			<header></header>
 			<main>
-				<section className="messages_sp_1">
-					<article className="font_headline --fh_sp">
-						Органы смартфона
-					</article>
-					<article className="mes_sp_0">
-						Неплохо, не правда ли?
-					</article>
-					<article className="mes_sp_1">
-						У сервисов есть доступ к основным органам смартфона.
-					</article>
-					<article className="mes_sp_2">
-						В сервисе можно:
-					</article>
-				</section>
 				<ChangeContent platform={platform} scanQR={scanQR} getTaptic={getTaptic} controlFlashlight={controlFlashlight} turnFlashlight={turnFlashlight} />
 				<section className="messages_sp_2">
 					<article>

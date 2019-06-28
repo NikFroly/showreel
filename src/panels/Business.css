@@ -8,14 +8,15 @@
 }
 
 .messages_bu {
-	height: 44.5%;
+	height: 11.5%;
+}
+
+.list_bu {
+	height: 33%
 }
 
 .mes_list_bu {
-	text-align: left;
-	margin: 0;
-	padding: 0 8%;
-	top: 10.6%;
+	top: 12%;
 }
 
 .controls_bu {

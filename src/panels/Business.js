@@ -22,6 +22,8 @@ const Business = ({ id, go }) => (
 					<article className="font_headline">
 						Что даст сервис вашему бизнесу?
 					</article>
+				</section>
+				<section className="list list_bu">
 					<ul className="mes_list_bu">
 						<li>От 100 000 бесплатных пользователей в месяц</li>
 						<li>Продавайте свои товары и услуги</li>

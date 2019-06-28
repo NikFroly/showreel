@@ -10,9 +10,9 @@ function ChangeContent(props) {
 		return (
 			<main>
 				<section className="images_mon_paid">
-					<article className="PersikGlad_container">
+					<div className="PersikGlad_container">
 						<img className="PersikGlad" src={persikGlad} alt="Glad cat" />
-					</article>
+					</div>
 				</section>
 				<section className="messages_mon_paid">
 					<article className="font_headline">
