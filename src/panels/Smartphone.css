@@ -1,4 +1,4 @@
-.messages_sp_1 {
+.messages_1_sp {
 	height: 71.5%;
 }
 
@@ -6,15 +6,15 @@
 	top: 9%;
 }
 
-.mes_sp_0 {
+.mes_0_sp {
 	top: 14.5%;
 }
 
-.mes_sp_1 {
+.mes_1_sp {
 	top: 19.4%;
 }
 
-.mes_sp_2 {
+.mes_2_sp {
 	top: 24.6%;
 }
 
@@ -38,34 +38,38 @@
 	top: 40.4%;
 }
 
-.messages_sp_2 {
+.messages_2_sp {
 	height: 11.8%;
 }
 
-.mes_sp_3 {
+.mes_3_sp {
 	top: 13%;
 }
 
-.controls_sp_2 {
+.controls_2_sp {
 	height: 16.7%;
 }
 
+.messages_1_info_sp {
+	height: 73.4%;
+}
+
 .SpotMobile {
-	height: 30%;
+	height: 41.8%;
 }
 
-.mes_sp_web_0 {
-	top: 8.4%;
+.mes_0_web_sp {
+	top: 10.8%;
 }
 
-.mes_sp_web_1 {
-	top: 13.4%;
+.mes_1_web_sp {
+	top: 17.4%;
 }
 
-.mes_sp_web_2 {
-	top: 18.5%;
+.list_sp {
+	height: 26.6%;
 }
 
-.mes_sp_list {
-	top: 22%;
+.mes_list_sp {
+	top: 9%;
 }

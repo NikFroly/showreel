@@ -22,7 +22,7 @@ const Start = ({ id, go }) => (
 					<article className="font_headline">
 						Мгновенный запуск
 					</article>
-					<article className="mes_st_0">
+					<article className="mes_0_st">
 						Обратили внимание, как легко сюда попасть?<br />
 						Не нужно ничего скачивать и устанавливать.<br />
 						Волшебство, не правда ли?

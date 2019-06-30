@@ -8,17 +8,17 @@ function ChangeContent(props) {
 	switch (props.platform) {
 		case 'ios':
 			return (
-				<section className="messages_sp_1">
+				<section className="messages_1_sp">
 					<article className="font_headline --fh_sp">
 						Органы смартфона
 					</article>
-					<article className="mes_sp_0">
+					<article className="mes_0_sp">
 						Неплохо, не правда ли?
 					</article>
-					<article className="mes_sp_1">
+					<article className="mes_1_sp">
 						У сервисов есть доступ к основным органам смартфона.
 					</article>
-					<article className="mes_sp_2">
+					<article className="mes_2_sp">
 						В сервисе можно:
 					</article>
 					<Button className="controls_cam --orange" size="xl" level="secondary" onClick={props.scanQR}>
@@ -34,17 +34,17 @@ function ChangeContent(props) {
 			);
 		case 'android':
 			return (
-				<section className="messages_sp_1">
+				<section className="messages_1_sp">
 					<article className="font_headline --fh_sp">
 						Органы смартфона
 					</article>
-					<article className="mes_sp_0">
+					<article className="mes_0_sp">
 						Неплохо, не правда ли?
 					</article>
-					<article className="mes_sp_1">
+					<article className="mes_1_sp">
 						У сервисов есть доступ к основным органам смартфона.
 					</article>
-					<article className="mes_sp_2">
+					<article className="mes_2_sp">
 						В сервисе можно:
 					</article>
 					<Button className="controls_cam_android --orange" size="xl" level="secondary" onClick={props.scanQR}>
@@ -57,25 +57,27 @@ function ChangeContent(props) {
 			);
 		default:
 			return (
-				<section className="messages_sp_1">
-					<img className="SpotMobile" src={spotMobile} alt="Mobile" />
-					<article className="font_headline">
-						Органы смартфона
-					</article>
-					<article className="mes_sp_web_0">
-						Неплохо, не правда ли?
-					</article>
-					<article className="mes_sp_web_1">
-						У сервисов есть доступ к основным органам смартфона.
-					</article>
-					<article className="mes_sp_web_2">
-						В сервисе можно:
-					</article>
-					<div className="list">
-						<ul className="mes_sp_list">
-							Открыть камеру<br />
-							Задействовать Taptic Engine<br />
-							Управлять вспышкой
+				<section className="messages_1_sp">
+					<div className="messages_1_info_sp">
+						<img className="SpotMobile" src={spotMobile} alt="Mobile" />
+						<article className="font_headline">
+							Органы смартфона
+						</article>
+						<article className="mes_0_web_sp">
+							Неплохо, не правда ли?
+						</article>
+						<article className="mes_1_web_sp">
+							У сервисов есть доступ к основным органам смартфона.
+						</article>
+					</div>
+					<div className="list list_sp">
+						<article>
+							В сервисе можно:
+						</article>
+						<ul className="mes_list_sp">
+							<li>Открыть камеру</li>
+							<li>Задействовать Taptic Engine</li>
+							<li>Управлять вспышкой</li>
 						</ul>
 					</div>
 				</section>
@@ -95,15 +97,15 @@ const Smartphone = ({ id, platform, scanQR, getTaptic, controlFlashlight, turnFl
 			<header></header>
 			<main>
 				<ChangeContent platform={platform} scanQR={scanQR} getTaptic={getTaptic} controlFlashlight={controlFlashlight} turnFlashlight={turnFlashlight} />
-				<section className="messages_sp_2">
+				<section className="messages_2_sp">
 					<article>
 						и многое другое!
 					</article>
-					<article className="mes_sp_3">
+					<article className="mes_3_sp">
 						Кстати, камера может сканировать QR-коды.
 					</article>
 				</section>
-				<section className="controls_sp_2">
+				<section className="controls_2_sp">
 					<Button size="xl" level="secondary" onClick={go} data-to="monetization">
 						Давай к делу
 					</Button>

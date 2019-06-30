@@ -53,7 +53,7 @@ const Welcome = ({ id, fetchedUser, go }) => (
 						Добро пожаловать<br />
 						в VK mini Apps
 					</article>
-					<article className="mes_wel_0">
+					<article className="mes_0_wel">
 						Мы расскажем,<br />
 						что такое сервисы ВКонтакте<br />
 						и что они умеют.

@@ -42,15 +42,15 @@ const Contacts = ({ id, go }) => (
 					<article className="font_headline">
 						Luna Apps
 					</article>
-					<article className="mes_con_0">
+					<article className="mes_0_con">
 						Если у вас появилась идея для сервиса,<br />
 						мы можем реализовать её вместе.
 					</article>
-					<article className="mes_con_1">
+					<article className="mes_1_con">
 						Мы делаем сервисы с момента их появления.<br /> 
 						Каждый десятый сервис в каталоге разработан нами.
 					</article>
-					<article className="mes_con_2">
+					<article className="mes_2_con">
 						А еще мы разрабатываем сервисы на заказ.
 					</article>
 				</section>

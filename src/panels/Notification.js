@@ -15,11 +15,11 @@ const Notification = ({ id, getNotifications, allowNotification, go }) => (
 		<section className="content">
 			<header></header>
 			<main>
-				<section className="messages_nt_1">
+				<section className="messages_1_nt">
 					<article className="font_headline --fh_nt">
 						Push-уведомления
 					</article>
-					<article className="mes_nt_0">
+					<article className="mes_0_nt">
 						Если сервис интересный,<br />
 						то можно подписывать пользователя на push-уведомления<br />
 						и сообщать о новых событиях.
@@ -28,7 +28,7 @@ const Notification = ({ id, getNotifications, allowNotification, go }) => (
 				<section className="images_nt">
 					<img className="PushExample" src={pushExample} alt="Example of push-messages" />
 				</section>
-				<section className="messages_nt_2">
+				<section className="messages_2_nt">
 					<article>
 						Оно появится даже на заблокированном экране устройства.
 					</article>

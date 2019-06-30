@@ -9,17 +9,17 @@ function ChangeContent(props) {
 	if (props.showResult) {
 		return (
 			<main>
-				<section className="images_mon_paid">
+				<section className="images_paid_mon">
 					<div className="PersikGlad_container">
 						<img className="PersikGlad" src={persikGlad} alt="Glad cat" />
 					</div>
 				</section>
-				<section className="messages_mon_paid">
+				<section className="messages_paid_mon">
 					<article className="font_headline">
 						Персик накормлен!
 					</article>
 				</section>
-				<section className="controls_mon_paid">
+				<section className="controls_paid_mon">
 					<Button size="xl" level="secondary" onClick={props.go} data-to="business">
 						Продолжить
 					</Button>
@@ -34,11 +34,11 @@ function ChangeContent(props) {
 					<article className="font_headline --fh_mon">
 						Монетизация
 					</article>
-					<article className="mes_mon_0">
+					<article className="mes_0_mon">
 						На сервисах можно зарабатывать деньги.<br /> 
 						В них можно встраивать рекламу и покупки через VK Pay.
 					</article>
-					<article className="mes_mon_1">
+					<article className="mes_1_mon">
 						Купите Персику корм, это стоит всего 1 рубль.
 					</article>
 				</section>

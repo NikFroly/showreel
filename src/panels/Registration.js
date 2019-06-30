@@ -22,13 +22,13 @@ const Registration = ({ id, fetchedUser, go }) => (
 					<article className="font_headline">
 						Отсутствие регистрации
 					</article>
-					<article className="messages_reg_blue">
+					<article className="messages_blue_reg">
 						В сервисах не нужно регистрироваться.<br />
 						Ты уже зарегистрирован.<br />
 						Мы знаем о тебе то, что ты не скрываешь<br />
 						от ВКонтакта:
 					</article>
-					<article className="messages_reg_weight">
+					<article className="messages_weight_reg">
 						Тебя зовут {`${ fetchedUser ? fetchedUser.first_name + ' ' + fetchedUser.last_name : 'Юзер' }`},
 						твоя дата рождения {`${ fetchedUser && fetchedUser.bdate ? fetchedUser.bdate : 'скрыта' }`},
 						твой город {`${ fetchedUser && fetchedUser.city ? fetchedUser.city.title : 'на планете земля' }`}.<br />

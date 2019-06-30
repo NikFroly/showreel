@@ -8,10 +8,10 @@ function ChangeContent(props) {
 	if (props.showResult) {
 		return (
 			<main>
-				<section className="images_geo_map">
+				<section className="images_map_geo">
 					<div className="StaticMap" style={{ backgroundImage: 'url(https://static-maps.yandex.ru/1.x/?ll=' + props.geodata.lng + ',' + props.geodata.lat + '&size=450,450&z=16&l=map&pt=' + props.geodata.lng + ',' + props.geodata.lat + ',org)' }} />
 				</section>
-				<section className="controls_geo_map">
+				<section className="controls_map_geo">
 					<Button size="xl" level="secondary" onClick={props.go} data-to="notification">
 						К другим фишкам
 					</Button>
@@ -29,7 +29,7 @@ function ChangeContent(props) {
 					<article className="font_headline">
 						Геолокация
 					</article>
-					<article className="mes_geo_0">
+					<article className="mes_0_geo">
 						Мы можем узнать больше информации<br />
 						и использовать это в сервисе,<br />
 						если ты позволишь.<br />
