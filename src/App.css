@@ -182,6 +182,10 @@ ul {
 	padding: 0 8%;
 }
 
+a {
+	text-decoration: none;
+}
+
 .Button {
 	width: 88%;
 }

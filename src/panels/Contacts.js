@@ -54,11 +54,11 @@ const Contacts = ({ id, go }) => (
 						А еще мы разрабатываем сервисы на заказ.
 					</article>
 				</section>
-				<form className="controls_con" action="https://docs.google.com/forms/d/1P-B1l-Yky-gsb6pgg0WRlpceqr_NtVCT_jrOUXbolWs/edit">
+				<a className="controls_con" href="https://vk.me/lunaaps">
 					<Button size="xl" level="secondary">
-						Заполнить бриф
+						Написать нам
 					</Button>
-				</form>
+				</a>
 			</main>
 			<footer>
 				<div className="page_label" onClick={go} data-to="welcome"></div>
