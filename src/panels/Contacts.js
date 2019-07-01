@@ -54,7 +54,7 @@ const Contacts = ({ id, go }) => (
 						А еще мы разрабатываем сервисы на заказ.
 					</article>
 				</section>
-				<a className="controls_con" href="https://vk.me/lunaaps">
+				<a className="controls_con" href="https://vk.me/lunaaps" target="_blank">
 					<Button size="xl" level="secondary">
 						Написать нам
 					</Button>
