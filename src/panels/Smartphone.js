@@ -25,7 +25,7 @@ function ChangeContent(props) {
 						Открыть камеру
 					</Button>
 					<Button className="controls_vib --orange" size="xl" level="secondary" onClick={props.getTaptic}>
-						Повибрировать
+						Задействовать Taptic Engine
 					</Button>
 					<Button className="controls_light --orange" size="xl" level="secondary" onClick={props.controlFlashlight}>
 						{`${ props.turnFlashlight ? 'Выключить фонарик' : 'Включить фонарик' }`}

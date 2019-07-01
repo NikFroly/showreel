@@ -1,14 +1,8 @@
 import React from 'react';
-import axios from 'axios';
-import base64 from 'react-native-base64';
 import connect from '@vkontakte/vkui-connect';
 import { View } from '@vkontakte/vkui';
 import '@vkontakte/vkui/dist/vkui.css';
 import './App.css';
-import './backend/callback.php'; // VKpay
-import './backend/public_key'; // VKpay
-
-import PayScript from './backend/payScript.php';
 
 import Welcome from './panels/Welcome';
 import Start from './panels/Start';
@@ -55,14 +49,20 @@ class App extends React.Component {
 				case 'VKWebAppGeodataResult':
 					this.setState({
 						geodata: {
-							lat: e.detail.data.lat,
-							lng: e.detail.data.long
+							lat: e.detail.data.lat ? e.detail.data.lat : 55.0419,
+							lng: e.detail.data.long ? e.detail.data.long : 82.9301
 						}
 					});
+					this.setState({ showResult: true });
+					break;
+				case 'VKWebAppGeodataFailed':
+					if (e.detail.data.reason === "User didn't allowed") {
+						this.sendPushMessage('Ой! Кто-то отменил наш запрос.');
+					};
 					break;
 				case 'VKWebAppAllowNotificationsResult':
 					this.setState({ allowNotification: e.detail.data.result });
-					this.sendPushMessage();
+					this.sendPushMessage(this.state.fetchedUser ? 'Привет, ' + this.state.fetchedUser.first_name  + '!' : 'Здравствуйте!');
 					break;
 				case 'VKWebAppDenyNotificationsResult':
 					this.setState({ allowNotification: e.detail.data.disabled });
@@ -77,12 +77,8 @@ class App extends React.Component {
 						}
 					}
 					break;
-				case 'VKWebAppGetEmailResult':
-					this.setState({ email: e.detail.data.email });
-					this.feedPersik();
-					break;
 				case 'VKWebAppOpenPayFormResult':
-					if (e.detail.data.response.status) {
+					if (e.detail.data.status) {
 						this.setState({ showResult: true });
 					}
 					break;
@@ -96,7 +92,6 @@ class App extends React.Component {
 
 	getGeodata = () => {
 		connect.send('VKWebAppGetGeodata');
-		this.setState({ showResult: true });
 	}
 
 	getNotifications = () => {
@@ -108,13 +103,13 @@ class App extends React.Component {
 		}
 	}
 
-	sendPushMessage = () => {
+	sendPushMessage = (message) => {
 		connect.send('VKWebAppCallAPIMethod', {
 			method: 'notifications.sendMessage',
 			request_id: '49test',
 			params: {
 				user_ids: this.state.fetchedUser.id,
-				message: `${this.state.fetchedUser ? 'Привет, ' + this.state.fetchedUser.first_name  + '!' : 'Здравствуйте!'}`,
+				message: message,
 				v: 5.95,
 				access_token: 'dc885af2dc885af2dc885af258dce29991ddc88dc885af280614792cae46a64cc772be7'
 			}
@@ -140,63 +135,15 @@ class App extends React.Component {
 		}
 	}
 
-	getEmail = () => {
-		connect.send('VKWebAppGetEmail');
-	}
-
 	feedPersik = () => {
-		var user_id = this.state.fetchedUser.id;
-		axios.get(PayScript, {
+		connect.send('VKWebAppOpenPayForm', {
+			app_id: 6996835,
+			action: 'pay-to-user',
 			params: {
-				api: 'getOrderId',
-				cource_id: 6996835,
-				user_id: user_id,
 				amount: 1,
-				mail: this.state.email
+				description: 'На корм Персику',
+				user_id: 267589777
 			}
-		}).then(function (response){
-			var order_id = response.data.order_id;
-			var amount = response.data.amount;
-			var ts = + new Date();
-			var merchant_data = base64.encode(JSON.stringify({"amount":amount,"currency":"RUB","order_id":order_id,"ts":ts}));
-			axios.get(PayScript, {
-				params: {
-					api: 'getVKpaySign',
-					data: merchant_data
-				}
-			}).then(function (response){
-				merchant_data = response.data.merchant_data; 
-				var merchant_sign = response.data.merchant_sign;
-				var description = ' feed Persik';
-				var app_data = 'amount=' + amount + 'data={"currency":"RUB","merchant_data":"' + merchant_data + '","merchant_sign":"' + merchant_sign + '","order_id":"' + order_id + '","ts":' + ts + '}description=' + description + 'merchant_id=6996835version=2';
-				axios.get(PayScript, {
-					params: {
-						api: 'getVKpayAppSign',
-						data: app_data,
-						user_id: user_id
-					}
-				}).then(function (response) {
-					connect.send('VKWebAppOpenPayForm', {
-						app_id: 6996835,
-						action: 'pay-to-service',
-						params: {
-							amount: amount,
-							description: description,
-							action: "pay-to-service",
-							merchant_id: 3922194,
-							version: 2,
-							sign: response.data.app_sign,
-							data: {
-								currency: "RUB",
-								merchant_data: merchant_data,
-								merchant_sign: merchant_sign,
-								order_id: order_id,
-								ts: ts
-							}
-						}
-					});
-				});
-			});
 		});
 	}
 
@@ -214,7 +161,7 @@ class App extends React.Component {
 				<Geolocation id="geolocation" showResult={this.state.showResult} getGeodata={this.getGeodata} geodata={this.state.geodata} go={this.go} />
 				<Notification id="notification" getNotifications={this.getNotifications} allowNotification={this.state.allowNotification} go={this.go} />
 				<Smartphone id="smartphone" platform={this.state.platform} scanQR={this.scanQR} getTaptic={this.getTaptic} controlFlashlight={this.controlFlashlight} turnFlashlight={this.state.turnFlashlight} go={this.go} />
-				<Monetization id="monetization" showResult={this.state.showResult} getEmail={this.getEmail} go={this.go} />
+				<Monetization id="monetization" showResult={this.state.showResult} feedPersik={this.feedPersik} go={this.go} />
 				<Business id="business" go={this.go} />
 				<Contacts id="contacts" go={this.go} />
 			</View>

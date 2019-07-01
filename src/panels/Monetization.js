@@ -46,7 +46,7 @@ function ChangeContent(props) {
 					<img className="PersikHungry" src={persikHungry} alt="Hungry cat" />
 				</section>
 				<section className="controls_mon">
-					<Button size="xl" level="secondary" onClick={props.getEmail} data-to="monetization">
+					<Button size="xl" level="secondary" onClick={props.feedPersik} data-to="monetization">
 						Купить Персику корм за 1 рубль
 					</Button>
 					<Button className="controls_skip" level="tertiary" onClick={props.go} data-to="business">
@@ -58,7 +58,7 @@ function ChangeContent(props) {
 	}
 }
 
-const Monetization = ({ id, showResult, getEmail, go }) => (
+const Monetization = ({ id, showResult, feedPersik, go }) => (
 	<div className="Page" id={id}>
 		<section className="background_element">
 			<div className="Rectangle --first"></div>
@@ -68,7 +68,7 @@ const Monetization = ({ id, showResult, getEmail, go }) => (
 		</section>
 		<section className="content">
 			<header></header>
-			<ChangeContent showResult={showResult} getEmail={getEmail} go={go} />
+			<ChangeContent showResult={showResult} feedPersik={feedPersik} go={go} />
 			<footer>
 				<div className="page_label" onClick={go} data-to="welcome"></div>
 				<div className="page_label" onClick={go} data-to="start"></div>
@@ -87,7 +87,7 @@ const Monetization = ({ id, showResult, getEmail, go }) => (
 Monetization.propTypes = {
 	id: PropTypes.string.isRequired,
 	showResult: PropTypes.bool.isRequired,
-	getEmail: PropTypes.func.isRequired,
+	feedPersik: PropTypes.func.isRequired,
 	go: PropTypes.func.isRequired
 };
 
