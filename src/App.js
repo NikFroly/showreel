@@ -111,7 +111,7 @@ class App extends React.Component {
 				user_ids: this.state.fetchedUser.id,
 				message: message,
 				v: 5.95,
-				access_token: 'dc885af2dc885af2dc885af258dce29991ddc88dc885af280614792cae46a64cc772be7'
+				access_token: ''
 			}
 		});
 	}
